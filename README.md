@@ -1,56 +1,58 @@
-# Tablice wielowymiarowe
-### Deklaracja i inicjacja tablicy 
+# Multidimensional arrays
+### Declaration and initialization of an array
 ```c
-/* tablica o dwóch wierszach i trzech kolumnach                      */
+/* the array with two rows and three columns                          */
 int tab[2][3] = {
 	{0,1,2},
 	{3,4,5}
 }; 
 ```
-### Elementy tablicy są umieszczana w następujących po sobie komórkach pamięci
+### The elements of an array are placed in consecutive memory cells
 ```c		
 for(int i = 0; i<2;i++){
 	for(int j = 0; j<3;j++){
-		printf("adres tab=%p tab=%d\n", (void *)&tab[i][j], tab[i][j]);
+		printf("address tab=%p tab=%d\n", (void *)&tab[i][j], tab[i][j]);
 	}
 }
 ```
-### Sposoby na inicjację tablicy
+### Ways to initialize an array
 ```c
 int tab[2][2][3] = {
 	{ {0,1,2},{0,4,5} },
 	{ {10,11,12},{0,0,0} },
 	}; 
 
-/* Można pomijać niektóre elementy podstawowej składni inicjacji     */
-/* tablicy, ale wtedy kod nie jest już tak przyjazny w odczycie.     */
-/* Na przykład można pominąć wielkość pierwszego wymiaru, 
-/* jeśli wynika ona z listy inicjacyjnej                             */ 
-int tab[][2][3] = { 
+
+/* It is possible to omit some elements of the basic array
+   initialization syntax, but then the code is no longer as
+   read-friendly.  For example, you can omit the size of the first
+   dimension if it is derived from the initialization list           */
+
+   int tab[][2][3] = { 
 	{ {1,2,},{0,4,5} },
 	{ {10,11,12} }, 
 	};
 
-/* Powyższa incjacja odpowiada tej:                                  */
+/* The above array initialization corresponds to this one            */
 int tab[2][2][3] = { 
 	{ {1,2,0},{0,4,5} },
 	{ {10,11,12},{0,0,0} }, 
 	};
 
-/* Można pominąć nawiasy klamrowe w liście inicjacyjnej              */
+/* You can skip some curly brackets in the initialization list       */
 int tab[2][2][3] = {0,1,2,0,4,5,10,11,12}; 
 int tab[2][2][3] = { {0,1,2,0,4,5},{10,11,12} }; 
 
-/* Powyższe incjacje odpowiadają tej:                                */
+/* The above array initializations correspond to this one:           */
 int tab[2][2][3] = { 
 	{ {0,1,2},{0,4,5} },
 	{ {10,11,12},{0,0,0} }, 
 	};
 
-/* Inicjacja na podstawie wskazanego elementu                        */
+/* Array initialization based on the indicated element               */
 int tab[2][2][3] = {[0][0][2]=100};
 
-/* Powyższa inicjacja odpowiada tej:                                 */
+/* The above array initialization corresponds to this on             */
 int tab[2][2][3] = { 
 	{ {0,0,100},{0,0,0} },
 	{ {0,0,0},{0,0,0} }, 
@@ -58,7 +60,7 @@ int tab[2][2][3] = {
 
 int tab[2][2][3] = {1,[0][0][2]=100,1}; 
 
-/* Powyższa inicjacja odpowiada tej:                                 */
+/* The above array initialization corresponds to this one            */
 int tab[2][2][3] = { 
 	{ {1,0,100},{1,0,0} },
 	{ {0,0,0},{0,0,0} }, 
@@ -66,10 +68,10 @@ int tab[2][2][3] = {
 
 ```
 
-### Zadanie
-Zaimplementuj jednowymiarowy automat komórkowy działający na tablicy 32x65.
-Każdy wiersz tablicy odpowiada jednej iteracji po czasie *t*. Zachowanie
-układu określają reguły:
+### Assignment
+Implement a one-dimensional cellular automaton that operates on a
+32x65 array.  Each row of the array corresponds to one iteration in
+*t* time. The behavior of of the array is determined by rules:
 
 0 < 0 > 0 —> 0
 
@@ -87,18 +89,19 @@ układu określają reguły:
 
 1 < 1 > 1 —> 0
 
-0 < 0 > 1 —> 1: oznacza, że jeśli układ dla *t*=a jest w stanie < 0 > i
-po lewej stronie jest 0, a po prawej jest 1, to dla *t*=a+1 przejdź do
-stanu 1. Pozostałe reguły analogicznie.
+`0 < 0 > 1` -> 1: means that if the system for *t*=a is in the state `<
+0 >` and the left side is `0`, and the right side is `1`, then for *t*=a+1
+switch to the state 1. The other rules works analogously.
 
-Wartość początkowa dla t=0:
+Initial value for *t*=0:
 00000000000000000000000000000000100000000000000000000000000000000
 
-W programie trzeba odpowiednio zamienić cyfrę 0 na symbol spacji, a cyfrę 1 na
-symbol #
+You need to properly replace the number 0 with a space symbol, and the
+number 1 with a '#' symbol
 
-Rezultatem działania programu ma być graficzna reprezentacja zachowania się
-układu dla t od 0 do 31 tj. trójkąt Sierpińskiego.
+The outcome of the program is to be a graphical representation of the
+behavior of the system for *t* from 0 to 31, i.e. a Sierpiński
+triangle.
 
 ```zsh
                                 #                                

@@ -1,16 +1,16 @@
 
-/* Tutaj dodaj dyrektywy preporcesora oraz deklaracje funkcji        */
+/* Add preprocessor directives and function declarations here.       */
 
 int main(){
 
   char sierpinski[T][X];
 
-  /* Tutaj dodaj swój kod. */
+  /* Add your code here */
 
-  /* W tym miejscu osoba czytająca kod powinna już rozumieć,         */
-  /* jak działa ten program.                                         */ 
+  /* At this point, the person reading the code                      */
+  /* should already understand how the program works.                */ 
   return 0;
 }
 
 
-/* Tutaj dodaj definicje funkcji                                     */
+/* Add function definitions here                                     */
